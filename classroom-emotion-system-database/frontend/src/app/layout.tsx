@@ -1,12 +1,29 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'EduPulse AI',
-  description: 'Classroom Emotion Detection and Statistical Analysis System',
+  title: 'EduPulse AI | Classroom Intelligence Platform',
+  description: 'Advanced AI-powered classroom emotion detection and engagement analytics system. Transform your teaching with real-time student insights.',
+  keywords: ['classroom analytics', 'emotion detection', 'AI education', 'student engagement', 'learning analytics'],
+};
+
+export const viewport: Viewport = {
+  themeColor: '#030712',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -15,8 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} bg-background`}>
+      <body className="font-sans antialiased">
+        {children}
+      </body>
     </html>
   );
 }
